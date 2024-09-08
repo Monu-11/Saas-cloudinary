@@ -8,7 +8,7 @@ const Page = async () => {
           Welcome to Our Website
         </h1>
         <h1 className='mb-8 text-3xl font-bold text-white'>
-          {/* Convert image as social media uses and compress the video */}
+          Convert image as social media uses and compress the video
         </h1>
         <div className='space-x-4'>
           <Link href={'/home'}>
