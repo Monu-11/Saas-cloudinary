@@ -21,6 +21,11 @@ const Page = async () => {
               Sign In
             </button>
           </Link>
+          <h2 className='mb-8 animate-pulse text-2xl font-bold text-white'>
+            <Link href={'/https://github.com/Monu-11/Saas-cloudinary'}>
+              Click here to see repo
+            </Link>
+          </h2>
         </div>
       </div>
     </div>
