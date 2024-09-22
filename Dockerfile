@@ -1,4 +1,4 @@
-FROM 20.12.0-alpine3.19
+FROM alpine:3.19
 
 WORKDIR /src
 
