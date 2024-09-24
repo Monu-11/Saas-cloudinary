@@ -39,4 +39,13 @@ jobs:
             sudo docker pull mod1603/narayan:latest
             sudo docker stop saas-cloudinary || true
             sudo docker rm saas-cloudinary || true
-            sudo docker run -d --name saas-cloudinary -p 3005:3000 mod1603/narayan:latest
+            sudo docker run -d --name saas-cloudinary -p 3005:3000 \
+              -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
+              -e NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}} \
+              -e CLERK_SECRET_KEY=${{secrets.CLERK_SECRET_KEY}} \
+              -e NEXT_PUBLIC_CLERK_SIGN_IN_URL=${{secrets.NEXT_PUBLIC_CLERK_SIGN_IN_URL}} \
+              -e NEXT_PUBLIC_CLERK_SIGN_UP_URL=${{secrets.NEXT_PUBLIC_CLERK_SIGN_UP_URL}} \
+              -e NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=${{secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}} \
+              -e CLOUDINARY_API_KEY=${{secrets.CLOUDINARY_API_KEY}} \
+              -e CLOUDINARY_API_SECRET=${{secrets.CLOUDINARY_API_SECRET}} \
+              mod1603/narayan:latest
