@@ -4,14 +4,13 @@ import { env } from 'next-runtime-env';
 const NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME = env('NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME')
 
 cloudinary.config({
-  cloud_name: NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  cloud_name: "dmq9ig2eh",
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 export function checkCloudinaryCredentials() {
   if (
-    !NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ||
     !process.env.CLOUDINARY_API_KEY ||
     !process.env.CLOUDINARY_API_SECRET
   ) {
