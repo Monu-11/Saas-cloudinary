@@ -18,7 +18,7 @@ RUN npx prisma generate
 COPY . .
 
 # Copy the .env file into the image
-COPY .env .env
+COPY .env .env.local
 
 # Build the project
 RUN npm run build
