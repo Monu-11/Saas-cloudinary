@@ -18,7 +18,12 @@ RUN npx prisma generate
 COPY . .
 
 # Build the project
-RUN npm run build
+# RUN npm run build
+RUN NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=APP_NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME npm run build
+
+# Permisions to execute script
+RUN ["chmod", "+x", "./entrypoint.sh"]
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 
 # Expose the port
 EXPOSE 3000
