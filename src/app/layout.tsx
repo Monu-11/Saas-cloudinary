@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
+import { PublicEnvScript } from 'next-runtime-env';
 import Providers from '@/context/Providers';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang='en'>
+        <PublicEnvScript />
         <body className={inter.className}>
           <Providers>
             {children}
