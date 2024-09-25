@@ -6,27 +6,27 @@ RUN apk add --no-cache nodejs npm
 # Set the working directory
 WORKDIR /src
 
-# Copy package files and prisma schema
-COPY package* . 
-COPY ./prisma .
 
-# Install dependencies and generate Prisma client
-RUN npm install
+
+# You only need to copy next.config.js if you are NOT using the default configuration
+COPY next.config.js ./
+COPY public ./public
+COPY package.json .env .env.local env.sh ./
+
+COPY ./prisma .
 RUN npx prisma generate
 
-# Copy the entire project
-COPY . .
-
-# Build the project
-# RUN npm run build
-RUN NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=APP_NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME npm run build
-
-# Permisions to execute script
-RUN ["chmod", "+x", "./entrypoint.sh"]
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY .next/standalone ./
+COPY .next/static ./.next/static
 
 # Expose the port
 EXPOSE 3000
+
+
+RUN chmod +x ./env.sh
+ENTRYPOINT ["./env.sh"]
 
 # Start the application
 CMD ["npm", "start"]
