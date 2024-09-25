@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@clerk/nextjs';
 import { getCldImageUrl, getCldVideoUrl } from 'next-cloudinary';
 import { Download, Clock, FileDown, FileUp, Delete } from 'lucide-react';
 import dayjs from 'dayjs';
@@ -16,6 +18,8 @@ interface VideoCardProps {
 }
 
 const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
+  const { userId } = useAuth();
+  const router = useRouter();
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [previewError, setPreviewError] = useState<boolean>(false);
 
@@ -74,7 +78,10 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
   };
 
   const handleDelete = () => {
-    deleteVideo(video.publicId);
+    if (userId) {
+      deleteVideo(video.publicId);
+    }
+    router.replace('/sign-in');
   };
 
   return (

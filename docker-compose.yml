@@ -16,7 +16,7 @@ services:
       - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
       - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
     ports:
-      - "3005:3000"
+      - '3005:3000'
     env_file:
       - .env
       - .env.local
