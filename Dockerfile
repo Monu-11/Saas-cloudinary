@@ -17,8 +17,9 @@ RUN npx prisma generate
 # Copy the entire project
 COPY . .
 
-# Set environment variables
-ENV NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=dmq9ig2eh
+# Set environment variable from build argument
+ARG NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+ENV NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=${NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
 
 # Build the project
 RUN npm run build

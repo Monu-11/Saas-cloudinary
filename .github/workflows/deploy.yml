@@ -25,6 +25,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: mod1603/narayan:latest
+          build-args: |
+            NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=${{ secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}
 
       - name: Verify Pushed Image
         run: docker pull mod1603/narayan:latest
